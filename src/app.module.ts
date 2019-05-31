@@ -1,9 +1,26 @@
+import { Todo } from './todo/todo.entity';
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { TodoModule } from './todo/todo.module';
 
 @Module({
-  imports: [],
+  imports: [
+    TypeOrmModule.forRoot({
+      type: 'mysql',
+      host: 'localhost',
+      port: 3306,
+      username: 'root',
+      password: '1234',
+      database: 'dionisio',
+      entities: [
+        Todo,
+      ],
+      synchronize: true,
+    }),
+    TodoModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
