@@ -1,5 +1,4 @@
-import { TodoDto } from './todo.dto';
-import { Entity, PrimaryGeneratedColumn, Column } from "typeorm";
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Todo {
