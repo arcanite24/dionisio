@@ -34,7 +34,7 @@ export class <%= camel %>Service {
   create(body: <%= camel %>Dto): Promise<<%= camel %>> {
 
     const <%= lowCamel %> = new <%= camel %>();
-    <%= lowCamel %>.text = body.text;
+    // <%= lowCamel %>.text = body.text;
 
     return this.repo.save(<%= lowCamel %>);
 

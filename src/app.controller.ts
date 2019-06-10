@@ -9,6 +9,7 @@ export class AppController {
   hello() {
     return {
       version: '0.0.1',
+      message: 'ฅ^•ﻌ•^ฅ',
     };
   }
 
