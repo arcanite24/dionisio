@@ -4,11 +4,13 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 // dionisio.modules
+import { HeroModule } from './hero/hero.module';
 import { OtraCosaModule } from './otraCosa/otraCosa.module';
 import { CosaModule } from './cosa/cosa.module';
 import { TodoModule } from './todo/todo.module';
 
 // dionisio.entities
+import { Hero } from './hero/hero.entity';
 import { OtraCosa } from './otraCosa/otraCosa.entity';
 import { Cosa } from './cosa/cosa.entity';
 import { Todo } from './todo/todo.entity';
@@ -24,6 +26,7 @@ import { Todo } from './todo/todo.entity';
       database: 'dionisio',
       entities: [
         // dionisio.orm
+        Hero,
         OtraCosa,
         Cosa,
         Todo,
@@ -31,6 +34,7 @@ import { Todo } from './todo/todo.entity';
       synchronize: true,
     }),
     // dionisio.imports
+    HeroModule,
     OtraCosaModule,
     CosaModule,
     TodoModule,
