@@ -6,4 +6,7 @@ export class Cosa {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  text: string;
+
 }

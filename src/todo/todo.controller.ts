@@ -1,5 +1,5 @@
 
-import { Controller, Get, Param, Post, Body, Delete, Patch } from '@nestjs/common';
+import { Controller, Get, Param, Post, Body, Delete, Patch, Query } from '@nestjs/common';
 import { TodoService } from './todo.service';
 import { TodoDto } from './todo.dto';
 import { TodoGateway } from './todo.gateway';
@@ -29,13 +29,13 @@ export class TodoController {
   find(
     @Body() query: any,
   ) {
-
     return this.todos.find(query);
   }
 
   @Post()
   async create(
     @Body() body: TodoDto,
+    @Query('key') realtimeKey?: string,
   ) {
 
     const todo = await this.todos.create(body);
@@ -46,6 +46,15 @@ export class TodoController {
       payload: todo,
      });
 
+    if (realtimeKey) {
+       this.gateway.server.emit(realtimeKey, {
+         collection: 'todo',
+         type: 'CREATE',
+         payload: todo,
+         key: realtimeKey,
+       });
+     }
+
     return todo;
 
   }
@@ -53,6 +62,7 @@ export class TodoController {
   @Delete(':id')
   delete(
     @Param('id') id: string,
+    @Query('key') realtimeKey?: string,
   ) {
 
     this.gateway.server.emit('todo', {
@@ -60,6 +70,15 @@ export class TodoController {
       type: 'DELETE',
       payload: { id },
     });
+
+    if (realtimeKey) {
+      this.gateway.server.emit(realtimeKey, {
+        collection: 'todo',
+        type: 'DELETE',
+        payload: { id },
+        key: realtimeKey,
+      });
+    }
 
     return this.todos.delete(id);
 
@@ -69,6 +88,7 @@ export class TodoController {
   update(
     @Param('id') id: string,
     @Body() body: TodoDto,
+    @Query('key') realtimeKey?: string,
   ) {
 
     this.gateway.server.emit('todo', {
@@ -76,6 +96,15 @@ export class TodoController {
       type: 'UPDATE',
       payload: { id, body },
     });
+
+    if (realtimeKey) {
+      this.gateway.server.emit(realtimeKey, {
+        collection: 'todo',
+        type: 'UPDATE',
+        payload: { id, body },
+        key: realtimeKey,
+      });
+    }
 
     return this.todos.update(id, body);
 

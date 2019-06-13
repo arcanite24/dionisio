@@ -29,6 +29,7 @@ export class TodoService {
 
     const todo = new Todo();
     todo.text = body.text;
+    todo.type = body.type;
 
     return this.repo.save(todo);
 

@@ -9,4 +9,7 @@ export class Todo {
   @Column()
   text: string;
 
+  @Column()
+  type: string;
+
 }
