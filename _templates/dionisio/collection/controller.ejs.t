@@ -123,14 +123,14 @@ export class <%= camel %>Controller {
 
     this.gateway.server.emit('<%= lowCamel %>', {
       collection: '<%= lowCamel %>',
-      type: 'UPDATE',
+      type: 'MODIFY',
       payload: { id, body },
     });
 
     if (realtimeKey) {
       this.gateway.server.emit(realtimeKey, {
         collection: '<%= lowCamel %>',
-        type: 'UPDATE',
+        type: 'MODIFY',
         payload: { id, body },
         key: realtimeKey,
       });

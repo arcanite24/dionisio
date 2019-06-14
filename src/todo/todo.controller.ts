@@ -118,14 +118,14 @@ export class TodoController {
 
     this.gateway.server.emit('todo', {
       collection: 'todo',
-      type: 'UPDATE',
+      type: 'MODIFY',
       payload: { id, body },
     });
 
     if (realtimeKey) {
       this.gateway.server.emit(realtimeKey, {
         collection: 'todo',
-        type: 'UPDATE',
+        type: 'MODIFY',
         payload: { id, body },
         key: realtimeKey,
       });
