@@ -1,60 +1,59 @@
-
 import { Controller, Get, Param, Post, Body, Delete, Patch, Query } from '@nestjs/common';
-import { TodoService } from './todo.service';
-import { TodoDto } from './todo.dto';
-import { TodoGateway } from './todo.gateway';
+import { VerduraService } from './verdura.service';
+import { VerduraDto } from './verdura.dto';
+import { VerduraGateway } from './verdura.gateway';
 
-@Controller('todo')
-export class TodoController {
+@Controller('verdura')
+export class VerduraController {
 
   constructor(
-    private todos: TodoService,
-    private gateway: TodoGateway,
+    private verduras: VerduraService,
+    private gateway: VerduraGateway,
   ) {}
 
   @Get()
   findAll() {
-    return this.todos.findAll();
+    return this.verduras.findAll();
   }
 
   @Get(':id')
   findOne(
     @Param('id') id: string,
   ) {
-    return this.todos.findOne(id);
+    return this.verduras.findOne(id);
   }
 
   @Post('query')
   find(
     @Body() query: any,
   ) {
-    return this.todos.find(query);
+    return this.verduras.find(query);
   }
 
   @Post()
   async create(
-    @Body() body: TodoDto,
+    @Body() body: VerduraDto,
     @Query('key') realtimeKey?: string,
   ) {
 
-    const todo = await this.todos.create(body);
+    const verdura = await this.verduras.create(body);
 
-    this.gateway.server.emit('todo', {
-      collection: 'todo',
+    this.gateway.server.emit('verdura', {
+      collection: 'verdura',
       type: 'CREATE',
-      payload: todo,
+      payload: verdura,
      });
 
     if (realtimeKey) {
        this.gateway.server.emit(realtimeKey, {
-         collection: 'todo',
+         collection: 'verdura',
          type: 'CREATE',
-         payload: todo,
+         payload: verdura,
          key: realtimeKey,
        });
      }
 
-    return todo;
+    return verdura;
 
   }
 
@@ -64,57 +63,50 @@ export class TodoController {
     @Query('key') realtimeKey?: string,
   ) {
 
-    this.gateway.server.emit('todo', {
-      collection: 'todo',
+    this.gateway.server.emit('verdura', {
+      collection: 'verdura',
       type: 'DELETE',
       payload: { id },
     });
 
     if (realtimeKey) {
       this.gateway.server.emit(realtimeKey, {
-        collection: 'todo',
+        collection: 'verdura',
         type: 'DELETE',
         payload: { id },
         key: realtimeKey,
       });
     }
 
-    return this.todos.delete(id);
+    return this.verduras.delete(id);
 
   }
 
   @Patch(':id')
   update(
     @Param('id') id: string,
-    @Body() body: TodoDto,
+    @Body() body: VerduraDto,
     @Query('key') realtimeKey?: string,
   ) {
 
-    this.gateway.server.emit('todo', {
-      collection: 'todo',
+    this.gateway.server.emit('verdura', {
+      collection: 'verdura',
       type: 'UPDATE',
       payload: { id, body },
     });
 
     if (realtimeKey) {
       this.gateway.server.emit(realtimeKey, {
-        collection: 'todo',
+        collection: 'verdura',
         type: 'UPDATE',
         payload: { id, body },
         key: realtimeKey,
       });
     }
 
-    return this.todos.update(id, body);
+    return this.verduras.update(id, body);
 
-  }
-
-  @Patch('modify/:id')
-  async modify(
-    @Param('id') id: number,
-    @Body() body: {field: string, delta: number},
-  ) {
-    return this.todos.modifiyValue(id, body.field, body.delta);
   }
 
 }
+

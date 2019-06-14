@@ -9,4 +9,7 @@ export class <%= h.inflection.camelize(collection) %> {
   @PrimaryGeneratedColumn()
   id: number;
 
+  @Column()
+  text: string;
+
 }

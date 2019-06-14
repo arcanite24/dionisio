@@ -43,4 +43,8 @@ export class TodoService {
     return this.repo.update(id, body);
   }
 
+  modifiyValue(id: number, field: string, delta: number) {
+    return Math.sign(delta) > 0 ? this.repo.increment({ id }, field, delta) : this.repo.decrement({ id }, field, -delta);
+  }
+
 }

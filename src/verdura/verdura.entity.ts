@@ -1,18 +1,12 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export class Todo {
+export class Verdura {
 
   @PrimaryGeneratedColumn()
   id: number;
 
   @Column()
   text: string;
-
-  @Column()
-  type: string;
-
-  @Column()
-  likes: number = 0;
 
 }
