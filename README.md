@@ -92,4 +92,3 @@ Please take a look at our [contributing](https://epsidev.com.mx/dionisio/contrib
 ####  Changelog
 - Removed support for Dionisio CLI, instead we are using npx with hygen
 - Removed support for Auth, dropped because Dionisio blends so well with Firebase Auth
-
