@@ -120,7 +120,24 @@ export class <%= camel %>Controller {
     @Param('id') id: number,
     @Body() body: {field: string, delta: number},
   ) {
+
+    this.gateway.server.emit('<%= lowCamel %>', {
+      collection: '<%= lowCamel %>',
+      type: 'UPDATE',
+      payload: { id, body },
+    });
+
+    if (realtimeKey) {
+      this.gateway.server.emit(realtimeKey, {
+        collection: '<%= lowCamel %>',
+        type: 'UPDATE',
+        payload: { id, body },
+        key: realtimeKey,
+      });
+    }
+
     return this.<%= plural %>.modifiyValue(id, body.field, body.delta);
+
   }
 
 }

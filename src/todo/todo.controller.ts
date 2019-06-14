@@ -113,8 +113,26 @@ export class TodoController {
   async modify(
     @Param('id') id: number,
     @Body() body: {field: string, delta: number},
+    @Query('key') realtimeKey?: string,
   ) {
+
+    this.gateway.server.emit('todo', {
+      collection: 'todo',
+      type: 'UPDATE',
+      payload: { id, body },
+    });
+
+    if (realtimeKey) {
+      this.gateway.server.emit(realtimeKey, {
+        collection: 'todo',
+        type: 'UPDATE',
+        payload: { id, body },
+        key: realtimeKey,
+      });
+    }
+
     return this.todos.modifiyValue(id, body.field, body.delta);
+
   }
 
 }
