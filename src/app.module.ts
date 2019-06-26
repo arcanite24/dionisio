@@ -4,18 +4,8 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 
 // dionisio.modules
-import { VerduraModule } from './verdura/verdura.module';
-import { HeroModule } from './hero/hero.module';
-import { OtraCosaModule } from './otraCosa/otraCosa.module';
-import { CosaModule } from './cosa/cosa.module';
-import { TodoModule } from './todo/todo.module';
 
 // dionisio.entities
-import { Verdura } from './verdura/verdura.entity';
-import { Hero } from './hero/hero.entity';
-import { OtraCosa } from './otraCosa/otraCosa.entity';
-import { Cosa } from './cosa/cosa.entity';
-import { Todo } from './todo/todo.entity';
 
 @Module({
   imports: [
@@ -28,20 +18,10 @@ import { Todo } from './todo/todo.entity';
       database: 'dionisio',
       entities: [
         // dionisio.orm
-        Verdura,
-        Hero,
-        OtraCosa,
-        Cosa,
-        Todo,
       ],
       synchronize: true,
     }),
     // dionisio.imports
-    VerduraModule,
-    HeroModule,
-    OtraCosaModule,
-    CosaModule,
-    TodoModule,
   ],
   controllers: [AppController],
   providers: [AppService],
