@@ -7,49 +7,26 @@ Dionisio is a NodeJS backend framework for agile web development designed to be 
 Dionisio is built on top of NestJS
 
 ##  Features
-
-  
-
 -  **Realtime Database Bindings** - Watch for changes on your data in realtime
-
 -  **Chunk data flow** - Recieve large amounts of data splitted in small chanks seamlessly utilizing the power of Prometheus Observables
-
 -  **Powerful queries based on TypeORM** - Only request what you need
-
 -  **Agnostic ORM** - Integrate Dionisio with different databases using adapters usign TypeORM
-
 -  **Extension support** - Extend Dionisio to almost everything you can imagine
 
-  
-
 ##  Installation
-
 ```bash
-
 npm i -g @epsidev/dionisio-cli
-
 ```
-
-  
 
 ##  Usage
-
 ####  Generate a project with Dionisio CLI
-
 ```bash
-
 dionisio new dionisio-demo
-
 ```
 
-  
-
 ####  Start the server
-
 ```bash
-
 npm start
-
 ```
 
 ## Roadmap
@@ -67,8 +44,6 @@ npm start
 #### External libraries, tools and plugins
 
 Dionisio loves to embrace custom libraries and plugins built with by the community. Take a look at the page on [Extending Dionisio](https://epsidev.com.mx/dionisio/docs/extending) on EpsiDev site and start building your own custom tools for the framework. If you developed something and want us to hear about it send us an email to contacto@epsidev.com.mx
-
-  
 
 ##  Contributing
 
