@@ -1,3 +1,4 @@
+import { version } from '../package.json';
 import { Controller, Get } from '@nestjs/common';
 
 @Controller()
@@ -8,7 +9,7 @@ export class AppController {
   @Get('hello')
   hello() {
     return {
-      version: '0.0.1',
+      version,
       message: 'ฅ^•ﻌ•^ฅ',
     };
   }
